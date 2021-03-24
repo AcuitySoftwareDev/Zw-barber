@@ -10,7 +10,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { LoadingController, Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 
@@ -25,7 +25,7 @@ export class LoginPage {
   public user = null;
   login: UserOptions = { username: '', password: '' };
   submitted = false;
-  
+
 
   constructor(
     public userData: UserData,
@@ -34,7 +34,7 @@ export class LoginPage {
     public loadingController: LoadingController,
     private fireAuth: AngularFireAuth,
     private platform: Platform,
-    
+
   ) { }
 
   async ngOnInit() {
@@ -63,7 +63,7 @@ export class LoginPage {
         });
     } else {
       console.log('else...');
-      this.fireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(success => {
+      this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(success => {
         console.log('success in google login', success);
         this.isGoogleLogin = true;
         this.user = success.user;
@@ -76,13 +76,13 @@ export class LoginPage {
     const credential = accessSecret ? firebase.auth.GoogleAuthProvider
       .credential(accessToken, accessSecret) : firebase.auth.GoogleAuthProvider
         .credential(accessToken);
-    this.fireAuth.signInWithCredential(credential)
+    this.fireAuth.auth.signInWithCredential(credential)
       .then((success) => {
         alert('successfully');
         this.isGoogleLogin = true;
         this.user = success.user;
         this.router.navigateByUrl('/tutorial');
-        
+
       });
 
   }
@@ -90,7 +90,7 @@ export class LoginPage {
     console.log(err);
   }
   logout() {
-    this.fireAuth.signOut().then(() => {
+    this.fireAuth.auth.signOut().then(() => {
       this.isGoogleLogin = false;
     });
   }

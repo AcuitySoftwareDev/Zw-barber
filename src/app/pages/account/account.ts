@@ -9,7 +9,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { LoadingController, Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class AccountPage implements AfterViewInit {
   ) {
 
     this.platform.ready().then(() => {
-      this.fireAuth.onAuthStateChanged(user => {
+      this.fireAuth.auth.onAuthStateChanged(user => {
         if (user) {
           this.isGoogleLogin = true;
         }
@@ -95,7 +95,7 @@ export class AccountPage implements AfterViewInit {
     this.router.navigateByUrl('/support');
   }
   glogout() {
-    this.fireAuth.signOut().then(() => {
+    this.fireAuth.auth.signOut().then(() => {
       this.isGoogleLogin = false;
     });
   }
@@ -120,7 +120,7 @@ export class AccountPage implements AfterViewInit {
         });
     } else {
       console.log('else...');
-      this.fireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(success => {
+      this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(success => {
         console.log('success in google login', success);
         this.isGoogleLogin = true;
         this.user = success.user;
@@ -133,7 +133,7 @@ export class AccountPage implements AfterViewInit {
     const credential = accessSecret ? firebase.auth.GoogleAuthProvider
       .credential(accessToken, accessSecret) : firebase.auth.GoogleAuthProvider
         .credential(accessToken);
-    this.fireAuth.signInWithCredential(credential)
+    this.fireAuth.auth.signInWithCredential(credential)
       .then((success) => {
         alert('successfully');
         this.isGoogleLogin = true;
@@ -147,7 +147,7 @@ export class AccountPage implements AfterViewInit {
     console.log(err);
   }
   logout() {
-    this.fireAuth.signOut().then(() => {
+    this.fireAuth.auth.signOut().then(() => {
       this.isGoogleLogin = false;
     });
   }

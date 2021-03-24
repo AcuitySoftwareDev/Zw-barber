@@ -27,7 +27,7 @@ export class ScheduleFilterPage {
     // passed in array of track names that should be excluded (unchecked)
     const excludedTrackNames = this.navParams.get('excludedTracks');
 
-    this.confData.getTracks().subscribe((tracks: any[]) => {
+    this.confData.getLabel().subscribe((tracks: any[]) => {
       tracks.forEach(track => {
         this.tracks.push({
           name: track.name,

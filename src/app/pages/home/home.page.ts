@@ -8,7 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { LoadingController, Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +32,7 @@ export class HomePage implements AfterViewInit {
       private platform: Platform,
   ) {
     this.platform.ready().then(() => {
-      this.fireAuth.onAuthStateChanged(user => {
+      this.fireAuth.auth.onAuthStateChanged(user => {
         if (user) {
           this.isGoogleLogin = true;
         }
