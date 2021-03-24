@@ -5,7 +5,7 @@ import { CheckTutorial } from './providers/check-tutorial.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tutorial',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -32,7 +32,45 @@ const routes: Routes = [
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
     canLoad: [CheckTutorial]
-  }
+  },
+  {
+    path: 'add-barber',
+    loadChildren: () => import('./pages/add-barber/add-barber.module').then( m => m.AddBarberPageModule)
+  },
+  {
+    path: 'developer',
+    loadChildren: () => import('./pages/developer/developer.module').then( m => m.DeveloperPageModule)
+  },
+  {
+    path: 'add-appointment',
+    loadChildren: () => import('./pages/add-appointment/add-appointment.module').then( m => m.AddAppointmentPageModule)
+  },
+  {
+    path: 'shop',
+    loadChildren: () => import('./pages/shop/shop.module').then( m => m.ShopPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren:  () => import ('./pages/home/home.module').then(m =>m.HomePageModule)
+  },
+  {
+    path: 'see-all',
+    loadChildren:  () => import ('./pages/see-all/see-all.module').then(m =>m.SeeAllPageModule)
+  },
+  {
+    path: 'item-detail',
+    loadChildren: () => import('./pages/item-detail/item-detail.module').then( m => m.ItemDetailPageModule)
+  },
+  {
+    path: 'barber',
+    loadChildren: () => import ('./pages/barber-list/barber-list.module').then( m => m.barberListModule)
+  },
+  {
+    path: 'schedule',
+    loadChildren: () => import ('./pages/schedule/schedule.module').then( m => m.ScheduleModule)
+  } 
+
+
 ];
 
 @NgModule({

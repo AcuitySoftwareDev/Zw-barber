@@ -6,10 +6,16 @@ import { MenuController, Platform, ToastController } from '@ionic/angular';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { Storage } from '@ionic/storage';
 
+import { UtilService } from './services/util.service';
+
 import { UserData } from './providers/user-data';
+
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+
+
 
 @Component({
   selector: 'app-root',
@@ -18,21 +24,22 @@ import { UserData } from './providers/user-data';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+  rootPage: any = '/home';
   appPages = [
     {
-      title: 'Schedule',
+      title: 'My Dashboard',
       url: '/app/tabs/schedule',
-      icon: 'calendar'
+      icon: 'speedometer'
     },
     {
-      title: 'Speakers',
-      url: '/app/tabs/speakers',
+      title: 'Hair Dressers',
+      url: '/app/tabs/barbers',
       icon: 'people'
     },
     {
-      title: 'Map',
-      url: '/app/tabs/map',
-      icon: 'map'
+      title: 'Shop',
+      url: '/app/tabs/shop',
+      icon: 'pricetags-outline'
     },
     {
       title: 'About',
@@ -42,6 +49,12 @@ export class AppComponent implements OnInit {
   ];
   loggedIn = false;
   dark = false;
+  isGoogleLogin = false;
+  public isMenuEnabled: boolean = true;
+  public selectedIndex = 0;
+  username: string;
+  public loading: any;
+  public user = null;
 
   constructor(
     private menu: MenuController,
@@ -53,11 +66,15 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private fireAuth: AngularFireAuth,
+    private util: UtilService,
+
   ) {
     this.initializeApp();
   }
 
   async ngOnInit() {
+
     this.checkLoginStatus();
     this.listenForLoginEvents();
 
@@ -84,9 +101,26 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      this.router.navigateByUrl('');
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.selectedIndex = 1;
+    this.util.getMenuState().subscribe(menuState => {
+      this.isMenuEnabled = menuState;
+    });
+
+    // this.platform.ready().then(() => {
+    //   this.fireAuth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       this.isGoogleLogin = true;
+    //     }
+    //     else {
+    //       this.isGoogleLogin = false;
+    //     }
+    //   });
+    // });
   }
 
   checkLoginStatus() {
@@ -98,6 +132,12 @@ export class AppComponent implements OnInit {
   updateLoggedInStatus(loggedIn: boolean) {
     setTimeout(() => {
       this.loggedIn = loggedIn;
+    }, 300);
+  }
+
+  updategLoggedInStatus(isGoogleLogin: boolean) {
+    setTimeout(() => {
+      this.loggedIn = isGoogleLogin
     }, 300);
   }
 
@@ -117,7 +157,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
+      return this.router.navigateByUrl('/login');
     });
   }
 
@@ -125,5 +165,13 @@ export class AppComponent implements OnInit {
     this.menu.enable(false);
     this.storage.set('ion_did_tutorial', false);
     this.router.navigateByUrl('/tutorial');
+  }
+  navigate(path, selectedId) {
+    this.selectedIndex = selectedId;
+    this.router.navigate([path]);
+  }
+
+  close() {
+    this.menu.toggle();
   }
 }

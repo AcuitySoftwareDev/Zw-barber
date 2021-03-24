@@ -1,0 +1,86 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/shop" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-slides pager="true" class="product-slider">
+    <ion-slide>
+      <img [src]="product?.image" [alt]="product?.name">
+    </ion-slide>
+    <ion-slide>
+      <img [src]="product?.image" [alt]="product?.name">
+    </ion-slide>
+    <ion-slide>
+      <img [src]="product?.image" [alt]="product?.name">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="ion-padding-vertical">
+    <h1 class="item-name">{{product?.name}}</h1>
+
+    <h4 class="price">
+      {{product?.price}}
+      <span class="real-price">{{product?.price}}</span>
+    </h4>
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="review">
+    <ion-row>
+      <ion-col size="6">
+        <div class="rating">
+          4.5
+        </div>
+
+        Very Good
+      </ion-col>
+      <ion-col size="6">
+        <div class="count">49 Reviews</div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="description">
+    <h5>Description</h5>
+
+    <p>
+      {{product?.description}}
+    </p>
+
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" color="light">Contact Seller</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full">Buy now</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar class="ios hydrated">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/tabs/schedule"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ios title-ios hydrated">Booking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="appointment">
+    <ion-list lines="full">
+      <form [formGroup]="bookingForm" (ngSubmit)="formSubmit()">
+
+
+        <ion-item>
+          <ion-input formControlName="title" placeholder="Title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">
+            Venue
+          </ion-label>
+          <ion-select value="1" formControlName="venue" type="text" required placeholder="Location">
+            <ion-select-option value="1">Salon</ion-select-option>
+            <ion-select-option value="2">Home</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item-divider></ion-item-divider>
+        <ion-item>
+          <ion-label>Service Date</ion-label>
+          <ion-datetime value="2021-02-28" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Time</ion-label>
+          <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="2021-02-28T08:00Z"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label for="hairdresser" position="floating">Hair Dresser</ion-label>
+          <ion-select formArrayName="name" type="barber" name="Hairdresser" ok-text="Choose" cancel-text="Nah">
+            <ion-select-option name="barber" *ngFor="let barber of barbers">
+              {{barber.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" name="email" type="text" required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input formControlName="mobile" name="mobile" type="text" required>
+          </ion-input>
+        </ion-item>
+
+        <ion-row>
+          <ion-col>
+            <ion-button class="courage" size="small" fill="outline" type="submit" color="primary" shape="round">Book
+              Appointment</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-list>
+  </ion-card>
+</ion-content>

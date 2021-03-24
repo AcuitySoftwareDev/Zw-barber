@@ -1,0 +1,50 @@
+<ion-content class="barber-detail">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/app/tabs/barbers"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons *ngIf="barber" slot="end">
+        <ion-button (click)="openContact(barber)">
+          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+        </ion-button>
+        <ion-button (click)="openbarberShare(barber)">
+          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="barber-background">
+    <img [src]="barber?.profilePic" [alt]="barber?.name">
+    <h2>{{barber?.name}}</h2>
+  </div>
+
+  <div class="ion-padding barber-detail">
+    <p>{{barber?.about}} Contact me!</p>
+    <hr>
+  </div>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-chip color="success" button (click)="openExternalUrl('https://wa.me/${barber.phone}?text=Hie%20')">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+          <ion-label>App</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip color="dark" button  (click)="call(barber)">
+          <ion-icon ios="call-outline" md="call-sharp"></ion-icon>
+          <ion-label> Call</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip color="instagram" button (click)="sms(barber)">
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+          <ion-label>Sms</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

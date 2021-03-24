@@ -1,0 +1,71 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!ios && !showSearchbar">Shop Ads</ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText"
+      (ionChange)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="title ion-padding">
+    <h2>categories</h2>
+    <p><a routerLink="/see-all">See All</a></p>
+  </div>
+
+  <div class="category-slider ion-padding-start" >
+    <ion-slides #shopList [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+      <ion-slide *ngFor="let category of categories">
+        <ion-col  >
+          <h4>{{ category.title }}</h4>
+          <img src="{{ category.imager }}" />
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="title ion-padding">
+    <h2 class="font-bold">Featured</h2>
+    <p><a routerLink="/see-all">See All</a></p>
+  </div>
+
+  <div class="product-slider ion-padding-start">
+    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+      <ion-slide *ngFor="let ad of categories.ads">
+        <ion-col class="ion-text-left" routerLink="/item-detail" routerDirection="forward">
+          <img src="{{ ad.image }}" />
+          <p>${{ ad.price }}</p>
+          <h6>{{ ad.name }}</h6>
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="title ion-padding" >
+    <h2 class="font-bold">Best Sell</h2>
+    <p><a routerLink="/see-all">See All</a></p>
+    
+  </div>
+
+
+
+  <div class="product-slider ion-padding-start">
+    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+      <ion-slide *ngFor="let product of bestSellProducts">
+        <ion-col class="ion-text-left" routerLink="/item-details" routerDirection="forward">
+          <img src="{{ product.image }}" />
+          <p>${{ product.price }}</p>
+          <h6>{{ product.name }}</h6>
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>

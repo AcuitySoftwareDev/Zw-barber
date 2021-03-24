@@ -1,0 +1,44 @@
+<ion-header translucent no-border>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/tabs/barbers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Developer Panel</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" src="../../assets/checkmark-filled.svg"></ion-icon>
+       </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" slot="fixed" >
+    <div >
+      <div class="developer-background">
+        <div class="avatar">
+          <img src="../../assets/Profile.jpg" alt="">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="user-meta ion-text-center">
+          <h3 class="playername">Courage Garupwa</h3>
+          <h6>Senior Software Engineer</h6>
+          <h5 class="country">Acuity Tech: Zimbabwe</h5>
+          
+          <h6 class="ranking">Current ranking: <ion-chip>
+              <ion-label>4</ion-label>
+            </ion-chip>
+          </h6>
+        </div>
+        <ion-chip color="facebook"> 
+          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-label> <a href="https://www.facebook.com/AcuityTechnologiesZW" target="_blank" rel="noopener noreferrer"></a>Facebook</ion-label>
+        </ion-chip>
+    
+        <ion-chip color="Github">
+          <ion-icon name="logo-github"></ion-icon>
+          <ion-label><a href="https://www.facebook.com/AcuityTechnologiesZW" target="_blank" rel="noopener noreferrer"></a>Github</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+</ion-content>

@@ -20,7 +20,7 @@ export class SupportPage {
 
   async ionViewDidEnter() {
     const toast = await this.toastCtrl.create({
-      message: 'This does not actually send a support request.',
+      message: 'Feel free to talk to us!',
       duration: 3000
     });
     await toast.present();

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shopping</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-card>
+      <ion-card-header style="text-align: center;font-weight: bolder">
+        All Ads
+      </ion-card-header>
+    </ion-card>
+
+    <div class="allads" *ngFor="let product of bestSellProducts" style="border-bottom: 4px solid black;margin-top: 7px">
+
+      <img src="{{product.image}}" width="100px" height="100px">
+
+      <table style=" float: right;font-size: 17px;">
+        <tr>
+          <td>Name:</td>
+          <td><b>{{product.name}}</b></td>
+        </tr>
+        <tr>
+          <td>Price: </td>
+          <td><b>${{product.price}}</b></td>
+        </tr>
+        <tr>
+          <td>Model:</td>
+          <td> <b>{{a.model}}</b></td>
+        </tr>
+        <tr>
+          <td>Address: </td>
+          <td><b>{{a.address}}</b></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</ion-content>

@@ -10,6 +10,15 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+          }
+        ]
+      },
+      {
         path: 'schedule',
         children: [
           {
@@ -23,28 +32,28 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'speakers',
+        path: 'barbers',
         children: [
           {
             path: '',
-            loadChildren: () => import('../speaker-list/speaker-list.module').then(m => m.SpeakerListModule)
+            loadChildren: () => import('../barber-list/barber-list.module').then(m => m.barberListModule)
           },
           {
             path: 'session/:sessionId',
             loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
           },
           {
-            path: 'speaker-details/:speakerId',
-            loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
+            path: 'barber-details/:barberId',
+            loadChildren: () => import('../barber-detail/barber-detail.module').then(m => m.barberDetailModule)
           }
         ]
       },
       {
-        path: 'map',
+        path: 'shop',
         children: [
           {
             path: '',
-            loadChildren: () => import('../map/map.module').then(m => m.MapModule)
+            loadChildren: () => import('../shop/shop.module').then(m => m.ShopPageModule)
           }
         ]
       },
@@ -59,9 +68,10 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/schedule',
+        redirectTo: 'app/tabs/home',
         pathMatch: 'full'
       }
+     
     ]
   }
 ];

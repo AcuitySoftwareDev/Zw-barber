@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button>
+        <img *ngIf="ios" src="../../../assets/menu_bar.svg" />
+      </ion-menu-button>
+      <ion-button class="filter" slot="end" routerLink="/account" >
+        <ion-icon name="person" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center"> Zim Barber </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <img [src]="user.photoURL" style="border-radius: 1px;" >
+      </ion-button>
+    </ion-buttons> -->
+    <!-- <ion-avatar slot="end"  *ngIf="!isGoogleLogin">
+      <img  [src]="user.photoURL" style="border-radius: 1px;"  >
+    </ion-avatar> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="category-slider ion-padding-start">
+    <ion-grid>
+      <ion-row>
+        <ion-col routerLink="/barber">
+
+          <img src="../../assets/icon/barber-nav.jpg" />
+          <div class="img-description">
+            <h4>Salon</h4>
+          </div>
+        </ion-col>
+        <ion-col routerLink="/schedule">
+          <img src="../../assets/booking.jpg" />
+          <div class="img-description">
+            <h4 class="ion-text-center">Bookings</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col routerLink="/shop">
+          <img src="../../assets/shop.jpg" />
+          <div class="img-description2">
+            <h4 class="ion-text-center">Shop Ads</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>

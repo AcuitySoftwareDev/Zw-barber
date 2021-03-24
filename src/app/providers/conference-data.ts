@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { title } from 'process';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { UserData } from './user-data';
 export class ConferenceData {
   data: any;
 
-  constructor(public http: HttpClient, public user: UserData) {}
+  constructor(public http: HttpClient, public user: UserData) { }
 
   load(): any {
     if (this.data) {
@@ -25,25 +26,33 @@ export class ConferenceData {
 
   processData(data: any) {
     // just some good 'ol JS fun with objects and arrays
-    // build up the data by linking speakers to sessions
+    // build up the data by linking barbers to sessions
     this.data = data;
 
+    //loop through each day in the shop
+    // this.data.shop.forEach((day: any) => {
+    //   day.categories.forEach((category: any) =>{
+    //     category.ads.forEach((ad: any) =>{
+    //       ad.users = [];
+    //     })
+    //   })
+    // })
     // loop through each day in the schedule
     this.data.schedule.forEach((day: any) => {
       // loop through each timeline group in the day
       day.groups.forEach((group: any) => {
         // loop through each session in the timeline group
         group.sessions.forEach((session: any) => {
-          session.speakers = [];
-          if (session.speakerNames) {
-            session.speakerNames.forEach((speakerName: any) => {
-              const speaker = this.data.speakers.find(
-                (s: any) => s.name === speakerName
+          session.barbers = [];
+          if (session.barberNames) {
+            session.barberNames.forEach((barberName: any) => {
+              const barber = this.data.barbers.find(
+                (s: any) => s.name === barberName
               );
-              if (speaker) {
-                session.speakers.push(speaker);
-                speaker.sessions = speaker.sessions || [];
-                speaker.sessions.push(session);
+              if (barber) {
+                session.barbers.push(barber);
+                barber.sessions = barber.sessions || [];
+                barber.sessions.push(session);
               }
             });
           }
@@ -131,22 +140,32 @@ export class ConferenceData {
     session.hide = !(matchesQueryText && matchesTracks && matchesSegment);
   }
 
-  getSpeakers() {
+  getbarbers() {
     return this.load().pipe(
       map((data: any) => {
-        return data.speakers.sort((a: any, b: any) => {
+        return data.barbers.sort((a: any, b: any) => {
           const aName = a.name.split(' ').pop();
           const bName = b.name.split(' ').pop();
           return aName.localeCompare(bName);
+
         });
       })
     );
   }
 
-  getTracks() {
+  getAds() {
     return this.load().pipe(
       map((data: any) => {
-        return data.tracks.sort();
+        return data.ads
+      })
+    );
+   
+  }
+
+  getLabel() {
+    return this.load().pipe(
+      map((data: any) => {
+        return data.labels.sort();
       })
     );
   }

@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar>
+
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
+
     <ion-title>Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="username" class="ion-padding-top ion-text-center">
-    <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
+  <ion-card>
+  <div class="ion-padding-top ion-text-center">
+    <img src="../../assets/img/none.png" alt="avatar">
     <h2>{{username}}</h2>
 
     <ion-list inset>
@@ -19,5 +22,26 @@
       <ion-item (click)="support()">Support</ion-item>
       <ion-item (click)="logout()">Logout</ion-item>
     </ion-list>
+  </div>
+</ion-card>
+  <div *ngIf="isGoogleLogin">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center"><b>{{user.displayName}}</b></ion-card-title>
+
+      </ion-card-header>
+
+      <ion-card-content>
+        <img [src]="user.photoURL" style="border-radius: 1px;">
+        <ion-item>
+          <ion-label>email:</ion-label>
+          <span>{{user.email}}</span>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" (click)="logout()" color="danger" *ngIf="isGoogleLogin">
+      Log Out
+    </ion-button>
   </div>
 </ion-content>

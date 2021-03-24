@@ -53,17 +53,17 @@ See [CONTRIBUTING.md](https://github.com/ionic-team/ionic-conference-app/blob/ma
 | -----------------| -----|
 | ![Android Schedule](/resources/screenshots/android-schedule.png) | ![iOS Schedule](/resources/screenshots/ios-schedule.png) |
 
-### [Speakers Page](https://github.com/ionic-team/ionic-conference-app/blob/master/src/app/pages/speaker-list/speaker-list.html)
+### [barbers Page](https://github.com/ionic-team/ionic-conference-app/blob/master/src/app/pages/barber-list/barber-list.html)
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Speakers](/resources/screenshots/android-speakers.png) | ![iOS Speakers](/resources/screenshots/ios-speakers.png) |
+| ![Android barbers](/resources/screenshots/android-barbers.png) | ![iOS barbers](/resources/screenshots/ios-barbers.png) |
 
-### [Speaker Detail Page](https://github.com/ionic-team/ionic-conference-app/blob/master/src/app/pages/speaker-detail/speaker-detail.html)
+### [barber Detail Page](https://github.com/ionic-team/ionic-conference-app/blob/master/src/app/pages/barber-detail/barber-detail.html)
 
 | Material Design  | iOS  |
 | -----------------| -----|
-| ![Android Speaker Detail](/resources/screenshots/android-speaker-detail.png) | ![iOS Speaker Detail](/resources/screenshots/ios-speaker-detail.png) |
+| ![Android barber Detail](/resources/screenshots/android-barber-detail.png) | ![iOS barber Detail](/resources/screenshots/ios-barber-detail.png) |
 
 ### [About Page](https://github.com/ionic-team/ionic-conference-app/blob/master/src/app/pages/about/about.html)
 

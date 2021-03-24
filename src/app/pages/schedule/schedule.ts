@@ -24,6 +24,7 @@ export class SchedulePage implements OnInit {
   groups: any = [];
   confDate: string;
   showSearchbar: boolean;
+  public selectedIndex = 0;
 
   constructor(
     public alertCtrl: AlertController,
@@ -69,6 +70,10 @@ export class SchedulePage implements OnInit {
       this.excludeTracks = data;
       this.updateSchedule();
     }
+  }
+  navigate(path, selectedId) {
+    this.selectedIndex = selectedId;
+    this.router.navigate([path]);
   }
 
   async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {
