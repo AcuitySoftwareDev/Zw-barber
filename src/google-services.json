@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "825605274413",
+    "firebase_url": "https://barber-3b0ea-default-rtdb.firebaseio.com",
+    "project_id": "barber-3b0ea",
+    "storage_bucket": "barber-3b0ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825605274413:android:53595fd619189f45f571a4",
+        "android_client_info": {
+          "package_name": "com.acuity.barber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825605274413-bg6vml896jtq0qafq4klull93hud726v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJpy-FNh9qirpX1E9ukbcnSGjOL7dIa3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825605274413-bg6vml896jtq0qafq4klull93hud726v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
