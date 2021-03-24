@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form name="form" (ngSubmit)="f.form.valid && addBarber()" #f="ngForm">
     <div class="class">
       <ion-card>
         <ion-card-header color="black" class="card-header">Add Your Profile</ion-card-header>
@@ -26,22 +26,54 @@
           </div>
           <ion-item-divider></ion-item-divider>
           <ion-item>
-            <ion-input placeholder="Your name?">Name:</ion-input>
+            <ion-input placeholder="Your name?" type="text" [(ngModel)]="barber.name" name="name_field" #name_field="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && name_field.invalid }" required="" >Name:</ion-input>
+
+            <div *ngIf="f.submitted && name_field.invalid" class="invalid-feedback">
+              <div *ngIf="name_field.errors.required"> Name is required</div>
+            </div>
+
           </ion-item>
 
 
           <ion-item>
-            <ion-input placeholder="What you do?">Services:</ion-input>
+            <ion-input placeholder="What you do?" [(ngModel)]="barber.description" name="description_field" #description_field="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && description_field.invalid }" required="">Services:</ion-input>
+
+            <div *ngIf="f.submitted && description_field.invalid" class="invalid-feedback">
+              <div *ngIf="description_field.errors.required"> Description is required</div>
+            </div>
           </ion-item>
 
 
           <ion-item>
-            <ion-input placeholder="Where can you be found?">Location:</ion-input>
+            <ion-input placeholder="Where can you be found?" [(ngModel)]="barber.location" name="location_field" #location_field="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && location_field.invalid }" required=""
+            >Location:</ion-input>
+            <div *ngIf="f.submitted && location_field.invalid" class="invalid-feedback">
+              <div *ngIf="location_field.errors.required"> Location is required</div>
+            </div>
           </ion-item>
 
           <ion-item>
-            <ion-input placeholder="Phone or Tell...">Phone:</ion-input>
+            <ion-input placeholder="Email..." [(ngModel)]="barber.email" name="email_field" #email_field="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email_field.invalid }">Email:</ion-input>
+
+            <div *ngIf="f.submitted && email_field.invalid" class="invalid-feedback">
+              <div *ngIf="email_field.errors.required"> Email is required</div>
+            </div>
           </ion-item>
+
+          <ion-item>
+            <ion-input placeholder="Phone or Tell..." [(ngModel)]="barber.mobile" name="mobile_field" #mobile_field="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && mobile_field.invalid }" required="">Phone:</ion-input>
+
+            <div *ngIf="f.submitted && mobile_field.invalid" class="invalid-feedback">
+              <div *ngIf="mobile_field.errors.required"> Mobile is required</div>
+            </div>
+          </ion-item>
+
+          <ion-button type="submit">Save</ion-button>
 
         </ion-card-content>
 

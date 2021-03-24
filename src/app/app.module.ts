@@ -23,6 +23,8 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
